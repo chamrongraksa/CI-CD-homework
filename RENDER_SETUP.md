@@ -80,3 +80,33 @@ Example POST body:
   "content": "hello from render"
 }
 ```
+
+## Troubleshooting: Blueprint cannot fetch GHCR image
+
+If Render shows an error like:
+
+"services[0].image the provided URL (ghcr.io/chamrongraksa/cicd-homework-backend:latest) could not be fetched"
+
+Follow these steps in order:
+
+1. Confirm backend GHCR workflow succeeded in GitHub Actions.
+   - Workflow: Backend CI - Build & Push to GHCR
+   - If it failed, fix that first and rerun.
+
+2. Confirm repository Actions permissions are set to Read and write.
+   - GitHub repo -> Settings -> Actions -> General -> Workflow permissions.
+
+3. Confirm the GHCR package exists.
+   - GitHub profile/org -> Packages -> `cicd-homework-backend`.
+
+4. Make the GHCR package public (recommended for this homework).
+   - Package -> Package settings -> Change package visibility -> Public.
+
+5. Retry Render Blueprint deploy.
+
+If you prefer to keep GHCR package private, configure registry credentials on Render web service:
+
+- Registry username: your GitHub username
+- Registry password: GitHub PAT with `read:packages`
+
+Then retry deploy.
