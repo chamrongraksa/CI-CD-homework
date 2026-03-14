@@ -1,0 +1,29 @@
+services:
+  - type: web
+    name: cicd-homework-backend
+    runtime: image
+    image:
+      url: ghcr.io/chamrongraksa/cicd-homework-backend:latest
+    plan: free
+    autoDeploy: false
+    envVars:
+      - key: SPRING_DATASOURCE_URL
+        fromDatabase:
+          name: cicd-homework-db
+          property: connectionString
+      - key: SPRING_DATASOURCE_USERNAME
+        fromDatabase:
+          name: cicd-homework-db
+          property: user
+      - key: SPRING_DATASOURCE_PASSWORD
+        fromDatabase:
+          name: cicd-homework-db
+          property: password
+      - key: SPRING_DATASOURCE_DRIVER_CLASS_NAME
+        value: org.postgresql.Driver
+      - key: SPRING_JPA_DATABASE_PLATFORM
+        value: org.hibernate.dialect.PostgreSQLDialect
+
+databases:
+  - name: cicd-homework-db
+    plan: free
