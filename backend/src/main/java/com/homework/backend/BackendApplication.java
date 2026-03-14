@@ -30,7 +30,8 @@ public class BackendApplication {
         }
 
         URI uri = URI.create(dbUrl);
-        String jdbcUrl = "jdbc:postgresql://" + uri.getHost() + ":" + uri.getPort() + uri.getPath();
+        String portSegment = uri.getPort() > 0 ? ":" + uri.getPort() : "";
+        String jdbcUrl = "jdbc:postgresql://" + uri.getHost() + portSegment + uri.getPath();
         System.setProperty("spring.datasource.url", jdbcUrl);
 
         String userInfo = uri.getUserInfo();
