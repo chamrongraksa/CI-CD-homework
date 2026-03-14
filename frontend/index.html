@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CI/CD Homework Frontend</title>
+    <style>
+      :root {
+        --bg: #f4f7fb;
+        --text: #12263a;
+        --accent: #006d77;
+        --card: #ffffff;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        min-height: 100vh;
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        color: var(--text);
+        background:
+          radial-gradient(circle at 15% 20%, #d4f1f4 0%, transparent 35%),
+          radial-gradient(circle at 85% 10%, #fbe7c6 0%, transparent 30%),
+          var(--bg);
+        display: grid;
+        place-items: center;
+        padding: 24px;
+      }
+
+      .card {
+        width: min(700px, 100%);
+        background: var(--card);
+        border-radius: 18px;
+        padding: 32px;
+        box-shadow: 0 20px 45px rgba(18, 38, 58, 0.12);
+      }
+
+      h1 {
+        margin-top: 0;
+        font-size: clamp(1.7rem, 3vw, 2.2rem);
+      }
+
+      .badge {
+        display: inline-block;
+        padding: 6px 12px;
+        border-radius: 999px;
+        font-weight: 700;
+        color: #fff;
+        background: var(--accent);
+      }
+
+      ul {
+        line-height: 1.7;
+      }
+
+      code {
+        background: #edf4ff;
+        padding: 0.12rem 0.35rem;
+        border-radius: 6px;
+      }
+    </style>
+  </head>
+  <body>
+    <main class="card">
+      <span class="badge">Frontend Live</span>
+      <h1>CI/CD Homework Frontend</h1>
+      <p>
+        This page confirms the frontend is deployed and publicly accessible.
+      </p>
+      <ul>
+        <li>Platform: Vercel</li>
+        <li>Workflow: <code>.github/workflows/frontend-vercel.yml</code></li>
+        <li>Trigger: push to <code>main</code></li>
+      </ul>
+    </main>
+  </body>
+</html>
