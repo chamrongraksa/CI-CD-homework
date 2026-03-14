@@ -14,13 +14,18 @@ public class BackendApplication {
     }
 
     private static void normalizeRenderDatabaseUrl() {
-        // Render commonly provides postgres:// URLs, while Spring JDBC expects jdbc:postgresql://.
+        // Render may provide postgres:// or postgresql:// URLs, while Spring JDBC expects jdbc:postgresql://.
         String dbUrl = firstNonBlank(
                 System.getenv("SPRING_DATASOURCE_URL"),
                 System.getenv("DATABASE_URL")
         );
 
-        if (dbUrl == null || !dbUrl.startsWith("postgres://")) {
+        if (dbUrl == null) {
+            return;
+        }
+
+        String lower = dbUrl.toLowerCase();
+        if (!(lower.startsWith("postgres://") || lower.startsWith("postgresql://"))) {
             return;
         }
 
