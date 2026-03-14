@@ -39,6 +39,6 @@ jobs:
         working-directory: backend
         run: |
           OWNER_LC=$(echo "${GITHUB_REPOSITORY_OWNER}" | tr '[:upper:]' '[:lower:]')
-          mvn -B -DskipTests \
+          mvn -B -DskipTests compile jib:build \
             -Djib.to.image=ghcr.io/${OWNER_LC}/cicd-homework-backend:latest \
-            jib:build
+            -Djib.container.creationTime=USE_CURRENT_TIMESTAMP
